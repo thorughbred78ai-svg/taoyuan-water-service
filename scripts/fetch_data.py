@@ -346,29 +346,364 @@ CONTACT_INFO = {
     "website": "https://wrb.tycg.gov.tw/"
 }
 
-# 法規資訊連結（園市法規資料庫水務類 + 中央法規）
+# 法規資訊連結（依官方水務類法規清單，共 59 筆）
 REGULATIONS = [
-    # 桃園市法規資料庫水務類（59筆）列表頁
-    {"title": "📋 桃園市水務類法規總覽（第1頁）", "url": "https://law.tycg.gov.tw/LawCategoryContentList.aspx?CategoryID=12&size=40", "category": "法規資訊"},
-    {"title": "📋 桃園市水務類法規總覽（第2頁）", "url": "https://law.tycg.gov.tw/LawCategoryContentList.aspx?CategoryID=12&size=40&page=2", "category": "法規資訊"},
-    # 已知具體法規
-    {"title": "桃園市污水下水道管理自治條例", "url": "https://law.tycg.gov.tw/LawContent.aspx?LawID=B070260000003600", "category": "法規資訊"},
-    {"title": "桃園市雨水下水道管理自治條例", "url": "https://law.tycg.gov.tw/LawContent.aspx?LawID=B070250000008400", "category": "法規資訊"},
-    {"title": "桃園市污水下水道使用費徵收自治條例", "url": "https://law.tycg.gov.tw/LawContent.aspx?LawID=B070250000006700", "category": "法規資訊"},
-    {"title": "桃園市地下水水權裝置量水設備自治條例", "url": "https://law.tycg.gov.tw/LawContent.aspx?LawID=B070260000000700", "category": "法規資訊"},
-    {"title": "桃園市建築基地開發排入雨水下水道逕流量標準", "url": "https://law.tycg.gov.tw/LawContent.aspx?LawID=B070260000000700", "category": "法規資訊"},
-    {"title": "桃園市工業區內事業用戶納入公共污水下水道使用管理及收費辦法", "url": "https://law.tycg.gov.tw/LawContent.aspx?LawID=B070250000002800", "category": "法規資訊"},
-    {"title": "桃園市政府排水計畫書審查作業要點", "url": "https://law.tycg.gov.tw/LawContent.aspx?LawID=B070250001009500", "category": "法規資訊"},
-    {"title": "桃園市政府辦理出流管制設施移交及管理作業要點", "url": "https://law.tycg.gov.tw/LawContent.aspx?LawID=B070260001001500", "category": "法規資訊"},
-    {"title": "桃園市雨水水道相關設施審查及查驗收費標準", "url": "https://law.tycg.gov.tw/LawContent.aspx?LawID=B070250000008400", "category": "法規資訊"},
-    {"title": "桃園市市管區域排水設施範圍使用行為規費收費標準", "url": "https://law.tycg.gov.tw/LawContent.aspx?LawID=B070250000008400", "category": "法規資訊"},
-    # 中央法規
-    {"title": "水利法", "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0110001", "category": "法規資訊"},
-    {"title": "河川管理辦法", "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0110005", "category": "法規資訊"},
-    {"title": "下水道法", "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=O0040001", "category": "法規資訊"},
-    {"title": "水土保持法", "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=M0110001", "category": "法規資訊"},
-    {"title": "排水管理辦法", "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0110010", "category": "法規資訊"}
+    {
+        "title": "桃園市其他排水管理自治條例",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL002705",
+        "category": "自治條例",
+        "date": "115.03.11"
+    },
+    {
+        "title": "桃園市水資源回收中心回饋地方自治條例",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL000288",
+        "category": "自治條例",
+        "date": "110.12.21"
+    },
+    {
+        "title": "桃園市地下水水權裝置量水設備自治條例",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL002048",
+        "category": "自治條例",
+        "date": "108.07.24"
+    },
+    {
+        "title": "桃園市污水下水道管理自治條例",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL000287",
+        "category": "自治條例",
+        "date": "107.10.03"
+    },
+    {
+        "title": "桃園市雨水下水道管理自治條例",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL001569",
+        "category": "自治條例",
+        "date": "106.01.25"
+    },
+    {
+        "title": "桃園市污水下水道使用費徵收自治條例",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL000301",
+        "category": "自治條例",
+        "date": "105.03.21"
+    },
+    {
+        "title": "桃園市市管河川區域使用行為規費收費標準",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL002586",
+        "category": "自治規則",
+        "date": "114.07.09"
+    },
+    {
+        "title": "桃園市水資源回收中心附屬水肥投入站管理辦法",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL000329",
+        "category": "自治規則",
+        "date": "114.01.09"
+    },
+    {
+        "title": "桃園市市管區域排水設施範圍使用行為規費收費標準",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL002509",
+        "category": "自治規則",
+        "date": "113.07.10"
+    },
+    {
+        "title": "桃園市道路側溝及雨水下水道暫掛纜線管理辦法",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL001208",
+        "category": "自治規則",
+        "date": "113.06.28"
+    },
+    {
+        "title": "桃園市污水下水道系統工程案件審查收費標準",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL002417",
+        "category": "自治規則",
+        "date": "112.06.27"
+    },
+    {
+        "title": "桃園市雨水下水道相關設施審查及查驗收費標準",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL002070",
+        "category": "自治規則",
+        "date": "111.10.24"
+    },
+    {
+        "title": "桃園市雨水污水下水道人孔設施管理辦法",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL002202",
+        "category": "自治規則",
+        "date": "110.02.08"
+    },
+    {
+        "title": "桃園市水資源發展基金收支保管及運用辦法",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL002182",
+        "category": "自治規則",
+        "date": "109.12.14"
+    },
+    {
+        "title": "桃園市工業區內事業用戶納入公共污水下水道使用管理及收費辦法",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL002167",
+        "category": "自治規則",
+        "date": "109.10.08"
+    },
+    {
+        "title": "桃園市污水下水道審查作業收費標準",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL002139",
+        "category": "自治規則",
+        "date": "109.06.04"
+    },
+    {
+        "title": "桃園市建築基地開發排入雨水下水道逕流量標準",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL002071",
+        "category": "自治規則",
+        "date": "108.09.26"
+    },
+    {
+        "title": "桃園市地下水井拆遷補償費及救濟金查估標準",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL002025",
+        "category": "自治規則",
+        "date": "108.04.29"
+    },
+    {
+        "title": "桃園市公共污水下水道可容納排入之下水水質標準",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL001553",
+        "category": "自治規則",
+        "date": "106.01.19"
+    },
+    {
+        "title": "桃園市排水計畫審查收費標準",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL001547",
+        "category": "自治規則",
+        "date": "105.12.27"
+    },
+    {
+        "title": "桃園市蓄水建造物拆除審核辦法",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL001337",
+        "category": "自治規則",
+        "date": "105.11.16"
+    },
+    {
+        "title": "桃園市溫泉開發許可審查收費標準",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL000331",
+        "category": "自治規則",
+        "date": "105.05.24"
+    },
+    {
+        "title": "桃園市下水道工程使用土地支付償金或補償費標準",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL000250",
+        "category": "自治規則",
+        "date": "104.12.04"
+    },
+    {
+        "title": "桃園市政府水務局職場霸凌防治措施申訴及調查處理要點",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL002727",
+        "category": "行政規則",
+        "date": "115.08.13"
+    },
+    {
+        "title": "桃園市山坡地查報取締工作督導考核要點",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL001150",
+        "category": "行政規則",
+        "date": "115.03.19"
+    },
+    {
+        "title": "桃園市山坡地範圍劃定及檢討變更作業要點",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL001153",
+        "category": "行政規則",
+        "date": "114.12.05"
+    },
+    {
+        "title": "桃園市水資源發展基金管理會設置要點",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL002233",
+        "category": "行政規則",
+        "date": "114.10.01"
+    },
+    {
+        "title": "桃園市政府水患防治專案小組設置要點",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL002593",
+        "category": "行政規則",
+        "date": "114.08.11"
+    },
+    {
+        "title": "桃園市政府水務局因性別所產生之歧視防治及申訴處理要點",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL001064",
+        "category": "行政規則",
+        "date": "113.05.31"
+    },
+    {
+        "title": "桃園市政府水務局工程品質督導小組設置及作業要點",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL001284",
+        "category": "行政規則",
+        "date": "112.11.27"
+    },
+    {
+        "title": "桃園市政府逕流分擔審議會設置要點",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL002424",
+        "category": "行政規則",
+        "date": "112.07.27"
+    },
+    {
+        "title": "桃園市政府水利建造物安全檢查督導小組設置及作業要點",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL002407",
+        "category": "行政規則",
+        "date": "112.05.26"
+    },
+    {
+        "title": "桃園市政府防汛專用砂包整備領用及回收注意事項",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL002350",
+        "category": "行政規則",
+        "date": "111.08.22"
+    },
+    {
+        "title": "桃園市政府辦理出流管制設施移交及管理作業要點",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL002341",
+        "category": "行政規則",
+        "date": "111.07.01"
+    },
+    {
+        "title": "桃園市政府山坡地違規使用查報取締聯繫小組設置要點",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL001152",
+        "category": "行政規則",
+        "date": "110.10.18"
+    },
+    {
+        "title": "桃園市政府水務局職業安全衛生督導作業要點",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL002112",
+        "category": "行政規則",
+        "date": "109.02.26"
+    },
+    {
+        "title": "桃園市備用水井運用及維護管理作業要點",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL001778",
+        "category": "行政規則",
+        "date": "107.01.11"
+    },
+    {
+        "title": "桃園市政府水務局公共工程工務管理要點",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL001660",
+        "category": "行政規則",
+        "date": "106.09.14"
+    },
+    {
+        "title": "桃園市政府水務局工程交通維持計畫夜間稽查小組設置及作業要點",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL001156",
+        "category": "行政規則",
+        "date": "105.05.11"
+    },
+    {
+        "title": "桃園市政府水務局人民申請案件審查小組設置及作業要點",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL001155",
+        "category": "行政規則",
+        "date": "104.06.30"
+    },
+    {
+        "title": "桃園市轄管河川區域範圍申請綠美化使用要點",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL002722",
+        "category": "行政規則",
+        "date": "115.07.20"
+    },
+    {
+        "title": "桃園市山坡地違規使用查報取締要點",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL001151",
+        "category": "行政規則",
+        "date": "115.07.17"
+    },
+    {
+        "title": "桃園市政府水務局督導促進民間參與公共建設計畫辦理附屬設施作業要點",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL002570",
+        "category": "行政規則",
+        "date": "114.11.26"
+    },
+    {
+        "title": "桃園市市管河川區域使用行為保證金收取及退還基準",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL002576",
+        "category": "行政規則",
+        "date": "114.05.27"
+    },
+    {
+        "title": "桃園市政府山坡地範圍劃定及檢討變更作業審議小組設置要點",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL001154",
+        "category": "行政規則",
+        "date": "113.12.30"
+    },
+    {
+        "title": "桃園市政府水務局大漢溪綠水兩岸園區管理要點",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL002453",
+        "category": "行政規則",
+        "date": "112.12.08"
+    },
+    {
+        "title": "桃園市污水下水道系統工程建設申請審查及查驗作業要點",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL002145",
+        "category": "行政規則",
+        "date": "112.06.29"
+    },
+    {
+        "title": "桃園市山坡地土地可利用限度查定工作要點",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL001149",
+        "category": "行政規則",
+        "date": "111.01.17"
+    },
+    {
+        "title": "桃園市雨水下水道設施設計審查及查驗管理要點",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL002073",
+        "category": "行政規則",
+        "date": "109.06.17"
+    },
+    {
+        "title": "桃園市政府處理違反水土保持法案件裁罰基準",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL001159",
+        "category": "行政規則",
+        "date": "109.01.15"
+    },
+    {
+        "title": "桃園市住宅既有污水處理設施廢除或改設及雨污水管渠分開設置補助要點",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL001160",
+        "category": "行政規則",
+        "date": "108.12.26"
+    },
+    {
+        "title": "桃園市公共污水下水道工作人員工作證管理要點",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL002095",
+        "category": "行政規則",
+        "date": "108.12.06"
+    },
+    {
+        "title": "桃園市申請市管防水建造物作為公路或一般道路使用處理原則",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL001596",
+        "category": "行政規則",
+        "date": "106.04.12"
+    },
+    {
+        "title": "桃園市政府水務局補助民間團體作業要點",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL001220",
+        "category": "行政規則",
+        "date": "105.08.15"
+    },
+    {
+        "title": "桃園市政府排水計畫書審查作業要點",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL001158",
+        "category": "行政規則",
+        "date": "104.11.12"
+    },
+    {
+        "title": "桃園市政府水務局職場霸凌防治申訴及調查處理要點",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL002620",
+        "category": "行政規則",
+        "date": "115.08.13"
+    },
+    {
+        "title": "桃園市政府水務局公務人員安全及衛生防護小組設置及作業要點",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL001933",
+        "category": "行政規則",
+        "date": "114.10.16"
+    },
+    {
+        "title": "桃園市政府水務局內部控制工作小組設置及作業要點",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL001221",
+        "category": "行政規則",
+        "date": "110.08.19"
+    },
+    {
+        "title": "桃園市政府水務局懸帳清理小組設置及作業要點",
+        "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL001157",
+        "category": "行政規則",
+        "date": "106.06.16"
+    }
 ]
+
 
 def main():
     output = {
