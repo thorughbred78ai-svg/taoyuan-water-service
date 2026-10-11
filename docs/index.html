@@ -114,6 +114,46 @@
             justify-content: space-between;
             align-items: center;
         }
+        .api-item .api-meta {
+            font-size: 0.85rem;
+            color: #666;
+        }
+        .data-preview {
+            margin-top: 10px;
+            max-height: 200px;
+            overflow-y: auto;
+            background: #f5f5f5;
+            border-radius: 4px;
+            padding: 10px;
+            font-size: 0.85rem;
+        }
+        .data-preview table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .data-preview th, .data-preview td {
+            border: 1px solid #ddd;
+            padding: 6px;
+            text-align: left;
+            font-size: 0.8rem;
+        }
+        .data-preview th {
+            background: #1a5f9e;
+            color: white;
+            position: sticky;
+            top: 0;
+        }
+        .data-preview tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        .count-badge {
+            background: #2d8fd5;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            margin-left: 8px;
+        }
         .footer {
             text-align: center;
             padding: 30px;
@@ -124,6 +164,7 @@
         @media (max-width: 768px) {
             header h1 { font-size: 1.5rem; }
             .service-grid { grid-template-columns: 1fr; }
+            .api-item { flex-direction: column; align-items: flex-start; }
         }
     </style>
 </head>
@@ -138,7 +179,7 @@
         <div class="card">
             <h2>便民服務入口</h2>
             <div class="service-grid" id="serviceGrid">
-                <!-- 由 JavaScript 動態產生 -->
+                <p style="color:#666">載入中...</p>
             </div>
         </div>
 
@@ -146,7 +187,7 @@
         <div class="card">
             <h2>即時資料來源狀態</h2>
             <div class="api-list" id="apiList">
-                <!-- 由 JavaScript 動態產生 -->
+                <p style="color:#666">載入中...</p>
             </div>
         </div>
 
@@ -154,7 +195,7 @@
         <div class="card">
             <h2>聯絡資訊</h2>
             <div class="contact-info" id="contactInfo">
-                <!-- 由 JavaScript 動態產生 -->
+                <p style="color:#666">載入中...</p>
             </div>
         </div>
     </div>
@@ -169,11 +210,19 @@
         async function loadData() {
             try {
                 const response = await fetch('data.json');
+                if (!response.ok) {
+                    throw new Error('HTTP ' + response.status);
+                }
                 const data = await response.json();
                 renderPage(data);
             } catch (error) {
                 console.error('載入資料失敗:', error);
-                document.getElementById('apiList').innerHTML = '<p style="color:#721c24">資料載入失敗，請稍後再試。</p>';
+                document.getElementById('apiList').innerHTML =
+                    '<p style="color:#721c24">資料載入失敗: ' + error.message + '</p>';
+                document.getElementById('serviceGrid').innerHTML =
+                    '<p style="color:#721c24">資料載入失敗</p>';
+                document.getElementById('contactInfo').innerHTML =
+                    '<p style="color:#721c24">資料載入失敗</p>';
             }
         }
 
@@ -181,13 +230,13 @@
             // 更新時間
             if (data.metadata && data.metadata.updated_at) {
                 const date = new Date(data.metadata.updated_at);
-                document.getElementById('updateTime').textContent = 
+                document.getElementById('updateTime').textContent =
                     '最後更新：' + date.toLocaleString('zh-TW');
             }
 
             // 便民服務連結
             const serviceGrid = document.getElementById('serviceGrid');
-            if (data.service_links) {
+            if (data.service_links && data.service_links.length > 0) {
                 serviceGrid.innerHTML = data.service_links.map(link => `
                     <div class="service-item">
                         <span class="category">${link.category}</span>
@@ -196,25 +245,68 @@
                         <a href="${link.url}" target="_blank" rel="noopener">前往服務 →</a>
                     </div>
                 `).join('');
+            } else {
+                serviceGrid.innerHTML = '<p style="color:#666">暫無服務連結資料</p>';
             }
 
-            // API 狀態
+            // API 狀態與資料預覽
             const apiList = document.getElementById('apiList');
-            if (data.apis) {
+            if (data.apis && Object.keys(data.apis).length > 0) {
                 apiList.innerHTML = Object.entries(data.apis).map(([key, api]) => {
                     const success = api.result && api.result.success;
                     const statusClass = success ? 'status-success' : 'status-error';
                     const statusText = success ? '連線正常' : '連線異常';
-                    return `
-                        <div class="api-item">
-                            <div>
-                                <strong>${api.config.name}</strong>
-                                <div style="font-size:0.85rem;color:#666">${api.config.description}</div>
+                    const count = api.result && api.result.count !== undefined
+                        ? `<span class="count-badge">${api.result.count} 筆</span>`
+                        : '';
+
+                    // 資料預覽表格
+                    let previewHtml = '';
+                    if (success && api.result.data && Array.isArray(api.result.data) && api.result.data.length > 0) {
+                        const records = api.result.data.slice(0, 5); // 最多顯示 5 筆
+                        const keys = Object.keys(records[0]);
+                        const displayKeys = keys.slice(0, 6); // 最多顯示 6 個欄位
+
+                        previewHtml = `
+                            <div class="data-preview">
+                                <table>
+                                    <thead>
+                                        <tr>${displayKeys.map(k => `<th>${k}</th>`).join('')}</tr>
+                                    </thead>
+                                    <tbody>
+                                        ${records.map(r => `
+                                            <tr>${displayKeys.map(k => `<td>${r[k] !== null && r[k] !== undefined ? String(r[k]).substring(0, 50) : ''}</td>`).join('')}</tr>
+                                        `).join('')}
+                                    </tbody>
+                                </table>
+                                ${api.result.count > 5 ? `<p style="text-align:center;color:#666;margin-top:5px">還有 ${api.result.count - 5} 筆資料...</p>` : ''}
                             </div>
-                            <span class="status-badge ${statusClass}">${statusText}</span>
+                        `;
+                    } else if (success && api.result.data) {
+                        previewHtml = `
+                            <div class="data-preview">
+                                <pre style="font-size:0.8rem;white-space:pre-wrap">${JSON.stringify(api.result.data, null, 2).substring(0, 500)}</pre>
+                            </div>
+                        `;
+                    }
+
+                    return `
+                        <div class="api-item" style="flex-direction:column;align-items:flex-start;">
+                            <div style="display:flex;justify-content:space-between;width:100%;align-items:center;">
+                                <div>
+                                    <strong>${api.config.name}</strong>
+                                    <span class="api-meta">${api.config.source}</span>
+                                    ${count}
+                                </div>
+                                <span class="status-badge ${statusClass}">${statusText}</span>
+                            </div>
+                            <div class="api-meta" style="margin-top:4px">${api.config.description}</div>
+                            ${previewHtml}
                         </div>
                     `;
                 }).join('');
+            } else {
+                apiList.innerHTML = '<p style="color:#666">暫無 API 資料</p>';
             }
 
             // 聯絡資訊
@@ -244,6 +336,8 @@
                         ${contact.hours}
                     </div>
                 `;
+            } else {
+                contactInfo.innerHTML = '<p style="color:#666">暫無聯絡資訊</p>';
             }
         }
 
