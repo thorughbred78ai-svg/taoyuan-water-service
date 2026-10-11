@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>桃園市政府水務局便民資訊服務</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans TC", sans-serif;
+            background: #f0f4f8;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        header {
+            background: linear-gradient(135deg, #1a5f9e 0%, #2d8fd5 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 30px;
+        }
+        header h1 { font-size: 2rem; margin-bottom: 10px; }
+        header p { opacity: 0.9; font-size: 1.1rem; }
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .card h2 {
+            color: #1a5f9e;
+            font-size: 1.4rem;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e8f0f8;
+        }
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 16px;
+        }
+        .service-item {
+            background: #f8fbff;
+            border: 1px solid #d0e3f5;
+            border-radius: 8px;
+            padding: 16px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .service-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .service-item h3 {
+            color: #1a5f9e;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        .service-item p {
+            color: #555;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+        .service-item .category {
+            display: inline-block;
+            background: #1a5f9e;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+        .service-item a {
+            display: inline-block;
+            color: #2d8fd5;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .service-item a:hover { text-decoration: underline; }
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 12px;
+        }
+        .contact-item {
+            background: #f8fbff;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border-left: 4px solid #2d8fd5;
+        }
+        .contact-item strong {
+            color: #1a5f9e;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .status-success { background: #d4edda; color: #155724; }
+        .status-error { background: #f8d7da; color: #721c24; }
+        .api-list { margin-top: 10px; }
+        .api-item {
+            padding: 10px;
+            background: #f8fbff;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .footer a { color: #2d8fd5; }
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.5rem; }
+            .service-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>桃園市政府水務局便民資訊服務</h1>
+        <p>整合政府公開 API，讓民眾輕鬆查詢水務資訊、補助申請與線上服務</p>
+    </header>
+
+    <div class="container">
+        <!-- 便民服務連結 -->
+        <div class="card">
+            <h2>便民服務入口</h2>
+            <div class="service-grid" id="serviceGrid">
+                <!-- 由 JavaScript 動態產生 -->
+            </div>
+        </div>
+
+        <!-- API 資料狀態 -->
+        <div class="card">
+            <h2>即時資料來源狀態</h2>
+            <div class="api-list" id="apiList">
+                <!-- 由 JavaScript 動態產生 -->
+            </div>
+        </div>
+
+        <!-- 聯絡資訊 -->
+        <div class="card">
+            <h2>聯絡資訊</h2>
+            <div class="contact-info" id="contactInfo">
+                <!-- 由 JavaScript 動態產生 -->
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>資料來源：<a href="https://opendata.tycg.gov.tw" target="_blank">桃園市政府資料開放平台</a></p>
+        <p id="updateTime"></p>
+    </div>
+
+    <script>
+        // 載入資料並渲染頁面
+        async function loadData() {
+            try {
+                const response = await fetch('data.json');
+                const data = await response.json();
+                renderPage(data);
+            } catch (error) {
+                console.error('載入資料失敗:', error);
+                document.getElementById('apiList').innerHTML = '<p style="color:#721c24">資料載入失敗，請稍後再試。</p>';
+            }
+        }
+
+        function renderPage(data) {
+            // 更新時間
+            if (data.metadata && data.metadata.updated_at) {
+                const date = new Date(data.metadata.updated_at);
+                document.getElementById('updateTime').textContent = 
+                    '最後更新：' + date.toLocaleString('zh-TW');
+            }
+
+            // 便民服務連結
+            const serviceGrid = document.getElementById('serviceGrid');
+            if (data.service_links) {
+                serviceGrid.innerHTML = data.service_links.map(link => `
+                    <div class="service-item">
+                        <span class="category">${link.category}</span>
+                        <h3>${link.title}</h3>
+                        <p>${link.description}</p>
+                        <a href="${link.url}" target="_blank" rel="noopener">前往服務 →</a>
+                    </div>
+                `).join('');
+            }
+
+            // API 狀態
+            const apiList = document.getElementById('apiList');
+            if (data.apis) {
+                apiList.innerHTML = Object.entries(data.apis).map(([key, api]) => {
+                    const success = api.result && api.result.success;
+                    const statusClass = success ? 'status-success' : 'status-error';
+                    const statusText = success ? '連線正常' : '連線異常';
+                    return `
+                        <div class="api-item">
+                            <div>
+                                <strong>${api.config.name}</strong>
+                                <div style="font-size:0.85rem;color:#666">${api.config.description}</div>
+                            </div>
+                            <span class="status-badge ${statusClass}">${statusText}</span>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            // 聯絡資訊
+            const contactInfo = document.getElementById('contactInfo');
+            if (data.contact) {
+                const contact = data.contact;
+                contactInfo.innerHTML = `
+                    <div class="contact-item">
+                        <strong>電話</strong>
+                        ${contact.phone}（分機 ${contact.extension}）
+                    </div>
+                    <div class="contact-item">
+                        <strong>服務專線</strong>
+                        ${contact.service_hotline}<br>
+                        ${contact.outside_hotline}
+                    </div>
+                    <div class="contact-item">
+                        <strong>電子郵件</strong>
+                        <a href="mailto:${contact.email}">${contact.email}</a>
+                    </div>
+                    <div class="contact-item">
+                        <strong>地址</strong>
+                        ${contact.address}
+                    </div>
+                    <div class="contact-item">
+                        <strong>服務時間</strong>
+                        ${contact.hours}
+                    </div>
+                `;
+            }
+        }
+
+        // 頁面載入時執行
+        loadData();
+    </script>
+</body>
+</html>
