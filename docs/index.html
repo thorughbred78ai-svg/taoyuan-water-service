@@ -6,223 +6,419 @@
     <title>桃園市政府水務局便民資訊服務</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #1a5f9e;
+            --primary-light: #2d8fd5;
+            --primary-bg: #e8f4fc;
+            --accent: #e8b341;
+            --success: #28a745;
+            --danger: #dc3545;
+            --text: #333;
+            --text-light: #666;
+            --bg: #f0f4f8;
+            --card-bg: #fff;
+            --border: #d0e3f5;
+        }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans TC", sans-serif;
-            background: #f0f4f8;
-            color: #333;
-            line-height: 1.6;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
         }
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+        /* Header */
         header {
-            background: linear-gradient(135deg, #1a5f9e 0%, #2d8fd5 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             color: white;
-            padding: 40px 20px;
+            padding: 50px 20px 40px;
             text-align: center;
-            border-radius: 0 0 20px 20px;
+            border-radius: 0 0 24px 24px;
             margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(26,95,158,0.25);
         }
-        header h1 { font-size: 2rem; margin-bottom: 10px; }
-        header p { opacity: 0.9; font-size: 1.1rem; }
-        .card {
+        header h1 { font-size: 2.2rem; margin-bottom: 12px; font-weight: 700; }
+        header p { opacity: 0.92; font-size: 1.15rem; max-width: 600px; margin: 0 auto; }
+        .update-time {
+            margin-top: 16px;
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        /* Search */
+        .search-bar {
+            max-width: 600px;
+            margin: -20px auto 30px;
+            position: relative;
+            z-index: 10;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 16px 24px 16px 52px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            outline: none;
+            transition: box-shadow 0.2s;
+        }
+        .search-bar input:focus { box-shadow: 0 4px 24px rgba(26,95,158,0.2); }
+        .search-bar::before {
+            content: "🔍";
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+        }
+
+        /* Category Tabs */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+        .tab-btn {
+            padding: 10px 22px;
+            border: 2px solid var(--border);
             background: white;
-            border-radius: 12px;
-            padding: 24px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--primary);
+            transition: all 0.2s;
+        }
+        .tab-btn:hover { background: var(--primary-bg); }
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
         }
         .card h2 {
-            color: #1a5f9e;
+            color: var(--primary);
             font-size: 1.4rem;
-            margin-bottom: 16px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #e8f0f8;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid var(--primary-bg);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
+
+        /* Service Grid */
         .service-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 16px;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 18px;
         }
         .service-item {
-            background: #f8fbff;
-            border: 1px solid #d0e3f5;
-            border-radius: 8px;
-            padding: 16px;
-            transition: transform 0.2s, box-shadow 0.2s;
+            background: linear-gradient(145deg, #f8fbff 0%, #fff 100%);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.25s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
         .service-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(26,95,158,0.12);
+            border-color: var(--primary-light);
+        }
+        .service-item .icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
         }
         .service-item h3 {
-            color: #1a5f9e;
+            color: var(--primary);
             font-size: 1.1rem;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
         .service-item p {
-            color: #555;
-            font-size: 0.95rem;
-            margin-bottom: 12px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 14px;
+            line-height: 1.6;
         }
         .service-item .category {
             display: inline-block;
-            background: #1a5f9e;
-            color: white;
-            padding: 4px 12px;
+            background: var(--primary-bg);
+            color: var(--primary);
+            padding: 4px 14px;
             border-radius: 20px;
-            font-size: 0.8rem;
-            margin-bottom: 10px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            margin-bottom: 12px;
         }
         .service-item a {
-            display: inline-block;
-            color: #2d8fd5;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--primary-light);
             text-decoration: none;
             font-weight: 600;
+            font-size: 0.92rem;
         }
         .service-item a:hover { text-decoration: underline; }
-        .contact-info {
+        .service-item.hidden { display: none; }
+
+        /* Business Info */
+        .business-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 16px;
         }
-        .contact-item {
-            background: #f8fbff;
-            padding: 12px 16px;
-            border-radius: 8px;
-            border-left: 4px solid #2d8fd5;
+        .business-item {
+            background: #fafcff;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 18px;
+            transition: all 0.2s;
         }
-        .contact-item strong {
-            color: #1a5f9e;
-            display: block;
-            margin-bottom: 4px;
+        .business-item:hover {
+            border-color: var(--primary-light);
+            box-shadow: 0 4px 12px rgba(26,95,158,0.08);
         }
-        .status-badge {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-        .status-success { background: #d4edda; color: #155724; }
-        .status-error { background: #f8d7da; color: #721c24; }
-        .api-list { margin-top: 10px; }
-        .api-item {
-            padding: 10px;
-            background: #f8fbff;
-            border-radius: 6px;
+        .business-item h3 {
+            color: var(--primary);
+            font-size: 1.05rem;
             margin-bottom: 8px;
+        }
+        .business-item p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .tag {
+            background: var(--primary-bg);
+            color: var(--primary);
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.78rem;
+        }
+        .business-item.hidden { display: none; }
+
+        /* FAQ */
+        .faq-list { display: flex; flex-direction: column; gap: 12px; }
+        .faq-item {
+            background: #fafcff;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+        .faq-item:hover { border-color: var(--primary-light); }
+        .faq-question {
+            padding: 16px 20px;
+            cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            font-weight: 600;
+            color: var(--primary);
+            background: #f5faff;
         }
-        .api-item .api-meta {
-            font-size: 0.85rem;
-            color: #666;
-        }
-        .data-preview {
-            margin-top: 10px;
-            max-height: 200px;
-            overflow-y: auto;
-            background: #f5f5f5;
-            border-radius: 4px;
-            padding: 10px;
-            font-size: 0.85rem;
-        }
-        .data-preview table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .data-preview th, .data-preview td {
-            border: 1px solid #ddd;
-            padding: 6px;
-            text-align: left;
-            font-size: 0.8rem;
-        }
-        .data-preview th {
-            background: #1a5f9e;
-            color: white;
-            position: sticky;
-            top: 0;
-        }
-        .data-preview tr:nth-child(even) {
-            background: #f9f9f9;
-        }
-        .count-badge {
-            background: #2d8fd5;
-            color: white;
-            padding: 2px 8px;
-            border-radius: 10px;
+        .faq-question::after {
+            content: "▼";
             font-size: 0.75rem;
-            margin-left: 8px;
+            transition: transform 0.2s;
+            color: var(--primary-light);
         }
-        .footer {
-            text-align: center;
-            padding: 30px;
-            color: #666;
+        .faq-item.active .faq-question::after { transform: rotate(180deg); }
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s;
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+        .faq-item.active .faq-answer {
+            padding: 14px 20px 18px;
+            max-height: 300px;
+        }
+        .faq-item.hidden { display: none; }
+
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 14px;
+        }
+        .contact-item {
+            background: linear-gradient(145deg, #f8fbff 0%, #fff 100%);
+            padding: 16px 18px;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-light);
+        }
+        .contact-item strong {
+            color: var(--primary);
+            display: block;
+            margin-bottom: 4px;
             font-size: 0.9rem;
         }
-        .footer a { color: #2d8fd5; }
+        .contact-item span, .contact-item a {
+            color: var(--text-light);
+            font-size: 0.92rem;
+            text-decoration: none;
+        }
+        .contact-item a:hover { color: var(--primary-light); text-decoration: underline; }
+
+        /* Regulations */
+        .reg-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .reg-item {
+            background: var(--primary-bg);
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.92rem;
+            transition: all 0.2s;
+            border: 1px solid var(--border);
+        }
+        .reg-item:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: var(--text-light);
+            font-size: 0.88rem;
+        }
+        .footer a { color: var(--primary-light); text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+
+        /* Section hidden */
+        .section-content { display: none; }
+        .section-content.active { display: block; }
+
+        /* No results */
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
         @media (max-width: 768px) {
-            header h1 { font-size: 1.5rem; }
-            .service-grid { grid-template-columns: 1fr; }
-            .api-item { flex-direction: column; align-items: flex-start; }
+            header h1 { font-size: 1.6rem; }
+            header p { font-size: 1rem; }
+            .service-grid, .business-grid { grid-template-columns: 1fr; }
+            .card { padding: 20px; }
+            .tabs { gap: 8px; }
+            .tab-btn { padding: 8px 16px; font-size: 0.88rem; }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>桃園市政府水務局便民資訊服務</h1>
-        <p>整合政府公開 API，讓民眾輕鬆查詢水務資訊、補助申請與線上服務</p>
+        <h1>🏛️ 桃園市政府水務局便民資訊服務</h1>
+        <p>整合水務局各項資訊，讓民眾輕鬆查詢補助申請、業務資訊、常見問答與線上服務</p>
+        <div class="update-time" id="updateTime"></div>
     </header>
 
     <div class="container">
-        <!-- 便民服務連結 -->
-        <div class="card">
-            <h2>便民服務入口</h2>
+        <!-- Search -->
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="搜尋服務、業務、問答..." autocomplete="off">
+        </div>
+
+        <!-- Category Tabs -->
+        <div class="tabs" id="categoryTabs">
+            <button class="tab-btn active" data-category="all">全部</button>
+            <button class="tab-btn" data-category="補助申請">補助申請</button>
+            <button class="tab-btn" data-category="資訊查詢">資訊查詢</button>
+            <button class="tab-btn" data-category="線上申請">線上申請</button>
+            <button class="tab-btn" data-category="業務資訊">業務資訊</button>
+            <button class="tab-btn" data-category="常見問答">常見問答</button>
+        </div>
+
+        <!-- 便民服務 -->
+        <div class="card" id="servicesSection">
+            <h2><span>🛎️</span> 便民服務入口</h2>
             <div class="service-grid" id="serviceGrid">
-                <p style="color:#666">載入中...</p>
+                <p style="color:#666;text-align:center;padding:20px">載入中...</p>
             </div>
         </div>
 
-        <!-- API 資料狀態 -->
-        <div class="card">
-            <h2>即時資料來源狀態</h2>
-            <div class="api-list" id="apiList">
+        <!-- 業務資訊 -->
+        <div class="card" id="businessSection">
+            <h2><span>📋</span> 業務資訊一覽</h2>
+            <div class="business-grid" id="businessGrid">
+                <p style="color:#666;text-align:center;padding:20px">載入中...</p>
+            </div>
+        </div>
+
+        <!-- 常見問答 -->
+        <div class="card" id="faqSection">
+            <h2><span>❓</span> 常見問答</h2>
+            <div class="faq-list" id="faqList">
+                <p style="color:#666;text-align:center;padding:20px">載入中...</p>
+            </div>
+        </div>
+
+        <!-- 法規連結 -->
+        <div class="card" id="regSection">
+            <h2><span>📜</span> 相關法規</h2>
+            <div class="reg-list" id="regList">
                 <p style="color:#666">載入中...</p>
             </div>
         </div>
 
         <!-- 聯絡資訊 -->
-        <div class="card">
-            <h2>聯絡資訊</h2>
-            <div class="contact-info" id="contactInfo">
+        <div class="card" id="contactSection">
+            <h2><span>📞</span> 聯絡資訊</h2>
+            <div class="contact-grid" id="contactInfo">
                 <p style="color:#666">載入中...</p>
             </div>
         </div>
     </div>
 
     <div class="footer">
-        <p>資料來源：<a href="https://opendata.tycg.gov.tw" target="_blank">桃園市政府資料開放平台</a></p>
-        <p id="updateTime"></p>
+        <p>資料來源：<a href="https://wrb.tycg.gov.tw/" target="_blank" rel="noopener">桃園市政府水務局</a></p>
+        <p style="margin-top:6px">本頁面僅供便民查詢參考，實際申請請以官方網站為準</p>
     </div>
 
     <script>
-        // 載入資料並渲染頁面
+        let allData = null;
+
         async function loadData() {
             try {
                 const response = await fetch('data.json');
-                if (!response.ok) {
-                    throw new Error('HTTP ' + response.status);
-                }
-                const data = await response.json();
-                renderPage(data);
+                if (!response.ok) throw new Error('HTTP ' + response.status);
+                allData = await response.json();
+                renderPage(allData);
             } catch (error) {
                 console.error('載入資料失敗:', error);
-                document.getElementById('apiList').innerHTML =
-                    '<p style="color:#721c24">資料載入失敗: ' + error.message + '</p>';
                 document.getElementById('serviceGrid').innerHTML =
-                    '<p style="color:#721c24">資料載入失敗</p>';
-                document.getElementById('contactInfo').innerHTML =
-                    '<p style="color:#721c24">資料載入失敗</p>';
+                    '<p class="no-results">資料載入失敗，請重新整理頁面再試。</p>';
             }
         }
 
@@ -231,117 +427,199 @@
             if (data.metadata && data.metadata.updated_at) {
                 const date = new Date(data.metadata.updated_at);
                 document.getElementById('updateTime').textContent =
-                    '最後更新：' + date.toLocaleString('zh-TW');
+                    '資料更新時間：' + date.toLocaleString('zh-TW');
             }
 
-            // 便民服務連結
-            const serviceGrid = document.getElementById('serviceGrid');
-            if (data.service_links && data.service_links.length > 0) {
-                serviceGrid.innerHTML = data.service_links.map(link => `
-                    <div class="service-item">
-                        <span class="category">${link.category}</span>
-                        <h3>${link.title}</h3>
-                        <p>${link.description}</p>
-                        <a href="${link.url}" target="_blank" rel="noopener">前往服務 →</a>
-                    </div>
-                `).join('');
-            } else {
-                serviceGrid.innerHTML = '<p style="color:#666">暫無服務連結資料</p>';
-            }
+            // 便民服務
+            renderServices(data.service_links);
 
-            // API 狀態與資料預覽
-            const apiList = document.getElementById('apiList');
-            if (data.apis && Object.keys(data.apis).length > 0) {
-                apiList.innerHTML = Object.entries(data.apis).map(([key, api]) => {
-                    const success = api.result && api.result.success;
-                    const statusClass = success ? 'status-success' : 'status-error';
-                    const statusText = success ? '連線正常' : '連線異常';
-                    const count = api.result && api.result.count !== undefined
-                        ? `<span class="count-badge">${api.result.count} 筆</span>`
-                        : '';
+            // 業務資訊
+            renderBusiness(data.business_info);
 
-                    // 資料預覽表格
-                    let previewHtml = '';
-                    if (success && api.result.data && Array.isArray(api.result.data) && api.result.data.length > 0) {
-                        const records = api.result.data.slice(0, 5); // 最多顯示 5 筆
-                        const keys = Object.keys(records[0]);
-                        const displayKeys = keys.slice(0, 6); // 最多顯示 6 個欄位
+            // 常見問答
+            renderFAQ(data.faq);
 
-                        previewHtml = `
-                            <div class="data-preview">
-                                <table>
-                                    <thead>
-                                        <tr>${displayKeys.map(k => `<th>${k}</th>`).join('')}</tr>
-                                    </thead>
-                                    <tbody>
-                                        ${records.map(r => `
-                                            <tr>${displayKeys.map(k => `<td>${r[k] !== null && r[k] !== undefined ? String(r[k]).substring(0, 50) : ''}</td>`).join('')}</tr>
-                                        `).join('')}
-                                    </tbody>
-                                </table>
-                                ${api.result.count > 5 ? `<p style="text-align:center;color:#666;margin-top:5px">還有 ${api.result.count - 5} 筆資料...</p>` : ''}
-                            </div>
-                        `;
-                    } else if (success && api.result.data) {
-                        previewHtml = `
-                            <div class="data-preview">
-                                <pre style="font-size:0.8rem;white-space:pre-wrap">${JSON.stringify(api.result.data, null, 2).substring(0, 500)}</pre>
-                            </div>
-                        `;
-                    }
-
-                    return `
-                        <div class="api-item" style="flex-direction:column;align-items:flex-start;">
-                            <div style="display:flex;justify-content:space-between;width:100%;align-items:center;">
-                                <div>
-                                    <strong>${api.config.name}</strong>
-                                    <span class="api-meta">${api.config.source}</span>
-                                    ${count}
-                                </div>
-                                <span class="status-badge ${statusClass}">${statusText}</span>
-                            </div>
-                            <div class="api-meta" style="margin-top:4px">${api.config.description}</div>
-                            ${previewHtml}
-                        </div>
-                    `;
-                }).join('');
-            } else {
-                apiList.innerHTML = '<p style="color:#666">暫無 API 資料</p>';
-            }
+            // 法規
+            renderRegulations(data.regulations);
 
             // 聯絡資訊
-            const contactInfo = document.getElementById('contactInfo');
-            if (data.contact) {
-                const contact = data.contact;
-                contactInfo.innerHTML = `
-                    <div class="contact-item">
-                        <strong>電話</strong>
-                        ${contact.phone}（分機 ${contact.extension}）
-                    </div>
-                    <div class="contact-item">
-                        <strong>服務專線</strong>
-                        ${contact.service_hotline}<br>
-                        ${contact.outside_hotline}
-                    </div>
-                    <div class="contact-item">
-                        <strong>電子郵件</strong>
-                        <a href="mailto:${contact.email}">${contact.email}</a>
-                    </div>
-                    <div class="contact-item">
-                        <strong>地址</strong>
-                        ${contact.address}
-                    </div>
-                    <div class="contact-item">
-                        <strong>服務時間</strong>
-                        ${contact.hours}
-                    </div>
-                `;
-            } else {
-                contactInfo.innerHTML = '<p style="color:#666">暫無聯絡資訊</p>';
-            }
+            renderContact(data.contact);
         }
 
-        // 頁面載入時執行
+        function renderServices(links) {
+            const grid = document.getElementById('serviceGrid');
+            if (!links || links.length === 0) {
+                grid.innerHTML = '<p class="no-results">暫無服務連結資料</p>';
+                return;
+            }
+            grid.innerHTML = links.map((link, i) => `
+                <div class="service-item" data-category="${link.category}" data-search="${(link.title + ' ' + link.description + ' ' + link.category).toLowerCase()}">
+                    <div class="icon">${link.icon || '🔗'}</div>
+                    <span class="category">${link.category}</span>
+                    <h3>${link.title}</h3>
+                    <p>${link.description}</p>
+                    <a href="${link.url}" target="_blank" rel="noopener">前往服務 →</a>
+                </div>
+            `).join('');
+        }
+
+        function renderBusiness(list) {
+            const grid = document.getElementById('businessGrid');
+            if (!list || list.length === 0) {
+                grid.innerHTML = '<p class="no-results">暫無業務資訊</p>';
+                return;
+            }
+            grid.innerHTML = list.map(item => `
+                <div class="business-item" data-search="${(item.title + ' ' + item.description + ' ' + item.services.join(' ')).toLowerCase()}" data-category="業務資訊">
+                    <h3>${item.title}</h3>
+                    <p>${item.description}</p>
+                    <div class="tag-list">
+                        ${item.services.map(s => `<span class="tag">${s}</span>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderFAQ(list) {
+            const container = document.getElementById('faqList');
+            if (!list || list.length === 0) {
+                container.innerHTML = '<p class="no-results">暫無問答資料</p>';
+                return;
+            }
+            container.innerHTML = list.map((item, i) => `
+                <div class="faq-item" data-search="${(item.question + ' ' + item.answer).toLowerCase()}" data-category="常見問答">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Q: ${item.question}</span>
+                    </div>
+                    <div class="faq-answer">${item.answer}</div>
+                </div>
+            `).join('');
+        }
+
+        function renderRegulations(list) {
+            const container = document.getElementById('regList');
+            if (!list || list.length === 0) {
+                container.innerHTML = '<p style="color:#666">暫無法規資料</p>';
+                return;
+            }
+            container.innerHTML = list.map(item => `
+                <a href="${item.url}" target="_blank" rel="noopener" class="reg-item">${item.title}</a>
+            `).join('');
+        }
+
+        function renderContact(contact) {
+            const container = document.getElementById('contactInfo');
+            if (!contact) {
+                container.innerHTML = '<p style="color:#666">暫無聯絡資訊</p>';
+                return;
+            }
+            container.innerHTML = `
+                <div class="contact-item">
+                    <strong>📞 電話</strong>
+                    <span>${contact.phone}（分機 ${contact.extension}）</span>
+                </div>
+                <div class="contact-item">
+                    <strong>☎️ 服務專線</strong>
+                    <span>${contact.service_hotline}</span><br>
+                    <span>${contact.outside_hotline}</span>
+                </div>
+                <div class="contact-item">
+                    <strong>✉️ 電子郵件</strong>
+                    <a href="mailto:${contact.email}">${contact.email}</a>
+                </div>
+                <div class="contact-item">
+                    <strong>📍 地址</strong>
+                    <span>${contact.address}</span>
+                </div>
+                <div class="contact-item">
+                    <strong>🕐 服務時間</strong>
+                    <span>${contact.hours}</span>
+                </div>
+                <div class="contact-item">
+                    <strong>🌐 官方網站</strong>
+                    <a href="${contact.website}" target="_blank" rel="noopener">wrb.tycg.gov.tw</a>
+                </div>
+            `;
+        }
+
+        // FAQ toggle
+        window.toggleFAQ = function(el) {
+            const item = el.parentElement;
+            const wasActive = item.classList.contains('active');
+            document.querySelectorAll('.faq-item').forEach(f => f.classList.remove('active'));
+            if (!wasActive) item.classList.add('active');
+        };
+
+        // Category tabs
+        document.getElementById('categoryTabs').addEventListener('click', function(e) {
+            if (!e.target.classList.contains('tab-btn')) return;
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            e.target.classList.add('active');
+            const category = e.target.dataset.category;
+            filterByCategory(category);
+        });
+
+        function filterByCategory(category) {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+
+            // Services
+            document.querySelectorAll('.service-item').forEach(el => {
+                const cat = el.dataset.category;
+                const text = el.dataset.search;
+                const matchCat = category === 'all' || cat === category;
+                const matchSearch = !searchTerm || text.includes(searchTerm);
+                el.classList.toggle('hidden', !(matchCat && matchSearch));
+            });
+
+            // Business
+            document.querySelectorAll('.business-item').forEach(el => {
+                const matchCat = category === 'all' || category === '業務資訊';
+                const text = el.dataset.search;
+                const matchSearch = !searchTerm || text.includes(searchTerm);
+                el.classList.toggle('hidden', !(matchCat && matchSearch));
+            });
+
+            // FAQ
+            document.querySelectorAll('.faq-item').forEach(el => {
+                const matchCat = category === 'all' || category === '常見問答';
+                const text = el.dataset.search;
+                const matchSearch = !searchTerm || text.includes(searchTerm);
+                el.classList.toggle('hidden', !(matchCat && matchSearch));
+            });
+        }
+
+        // Search
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const term = e.target.value.toLowerCase().trim();
+            const activeCategory = document.querySelector('.tab-btn.active').dataset.category;
+
+            // Services
+            document.querySelectorAll('.service-item').forEach(el => {
+                const cat = el.dataset.category;
+                const text = el.dataset.search;
+                const matchCat = activeCategory === 'all' || cat === activeCategory;
+                const matchSearch = !term || text.includes(term);
+                el.classList.toggle('hidden', !(matchCat && matchSearch));
+            });
+
+            // Business
+            document.querySelectorAll('.business-item').forEach(el => {
+                const matchCat = activeCategory === 'all' || activeCategory === '業務資訊';
+                const text = el.dataset.search;
+                const matchSearch = !term || text.includes(term);
+                el.classList.toggle('hidden', !(matchCat && matchSearch));
+            });
+
+            // FAQ
+            document.querySelectorAll('.faq-item').forEach(el => {
+                const matchCat = activeCategory === 'all' || activeCategory === '常見問答';
+                const text = el.dataset.search;
+                const matchSearch = !term || text.includes(term);
+                el.classList.toggle('hidden', !(matchCat && matchSearch));
+            });
+        });
+
+        // Load on page ready
         loadData();
     </script>
 </body>
