@@ -193,6 +193,30 @@ GOV_INFO_LINKS = [
     }
 ]
 
+# 訊息公告
+ANNOUNCEMENTS = [
+    {
+        "title": "最新消息",
+        "url": "https://wrb.tycg.gov.tw/News.aspx?n=10827&sms=14441",
+        "description": "水務局最新公告、活動訊息與重要通知"
+    },
+    {
+        "title": "RSS 訂閱",
+        "url": "https://wrb.tycg.gov.tw/cp.aspx?n=10828",
+        "description": "訂閱水務局 RSS 資訊推播，即時掌握最新動態"
+    },
+    {
+        "title": "新聞專區",
+        "url": "https://wrb.tycg.gov.tw/News.aspx?n=10829&sms=14442",
+        "description": "水務相關新聞報導與政策宣導資訊"
+    },
+    {
+        "title": "影音專區",
+        "url": "https://wrb.tycg.gov.tw/News_Video.aspx?n=10830&sms=14443",
+        "description": "水務局宣導影片、活動紀錄與教育影片"
+    }
+]
+
 # 交通資訊
 TRAFFIC_INFO = {
     "address": "33043 桃園市桃園區成功路一段32號7樓",
@@ -342,6 +366,7 @@ def main():
         },
         "service_links": SERVICE_LINKS,
         "gov_info_links": GOV_INFO_LINKS,
+        "announcements": ANNOUNCEMENTS,
         "traffic_info": TRAFFIC_INFO,
         "business_info": BUSINESS_INFO,
         "faq": FAQ,
