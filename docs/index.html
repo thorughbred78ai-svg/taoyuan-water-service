@@ -402,6 +402,13 @@
             font-size: 0.75rem;
             font-weight: 600;
         }
+        .search-hint { margin:7px 2px 0; color:var(--text-light); font-size:.82rem; }
+        .business-contact { display:flex; flex-wrap:wrap; gap:8px 14px; margin-top:12px; padding-top:10px; border-top:1px solid var(--border); font-size:.84rem; color:var(--text); }
+        .business-contact a, .faq-links a { color:var(--primary); text-decoration:none; font-weight:650; }
+        .business-contact a:hover, .faq-links a:hover { text-decoration:underline; }
+        .business-contact span { overflow-wrap:anywhere; }
+        .faq-links { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+        .faq-links a { display:inline-flex; align-items:center; gap:5px; padding:6px 10px; border-radius:7px; background:var(--primary-bg); border:1px solid var(--border); font-size:.82rem; }
         .business-item.hidden { display: none; }
 
         /* ===== FAQ ===== */
@@ -569,7 +576,7 @@
 
         <!-- Search -->
         <div class="search-bar">
-            <input type="text" id="searchInput" placeholder="搜尋服務、業務、問答、交通、政府資訊..." autocomplete="off">
+            <input type="text" id="searchInput" placeholder="搜尋服務、問答、法規名稱、科室或關鍵字..." autocomplete="off" aria-label="搜尋服務、常見問答、相關法規與科室"><p class="search-hint">可直接輸入法規名稱、業務關鍵字或科室名稱；點選上方分類可快速縮小範圍。</p>
         </div>
 
         <!-- Category Tabs -->
@@ -775,6 +782,7 @@
                     <h3>${item.title}</h3>
                     <p>${item.description}</p>
                     <div class="tag-list">${item.services.map(s => `<span class="tag">${s}</span>`).join('')}</div>
+                    ${(item.phone || item.fax) ? `<div class="business-contact"><span>☎️ 電話：<a href="tel:03-303-3688">${item.phone || '未提供'}</a></span><span>📠 傳真：${item.fax || '未提供'}</span>${item.official_url ? `<a href="${item.official_url}" target="_blank" rel="noopener">官方科室資訊 ↗</a>` : ''}</div>` : ''}
                 </div>
             `).join('');
         }
@@ -785,12 +793,12 @@
                 container.innerHTML = '<p class="no-results">暫無問答資料</p>'; return;
             }
             container.innerHTML = list.map(item => {
-                const searchText = (item.question + ' ' + item.answer.replace(/<[^>]*>/g, '')).toLowerCase();
+                const searchText = (item.question + ' ' + item.answer.replace(/<[^>]*>/g, '') + ' ' + (item.links || []).map(link => link.title).join(' ')).toLowerCase();
                 return `<div class="faq-item" data-search="${searchText}" data-category="常見問答">
                     <div class="faq-question" onclick="toggleFAQ(this)">
                         <span>Q: ${item.question}</span>
                     </div>
-                    <div class="faq-answer">${item.answer}</div>
+                    <div class="faq-answer">${item.answer}${item.links && item.links.length ? `<div class="faq-links" aria-label="相關連結">${item.links.map(link => `<a href="${link.url}" target="_blank" rel="noopener">🔗 ${link.title} ↗</a>`).join('')}</div>` : ''}</div>
                 </div>`;
             }).join('');
         }
