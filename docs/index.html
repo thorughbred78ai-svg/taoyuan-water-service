@@ -472,6 +472,21 @@
             border-color: var(--primary);
         }
 
+        .reg-group { margin-bottom: 22px; }
+        .reg-group:last-child { margin-bottom: 0; }
+        .reg-group-title {
+            color: var(--primary);
+            font-size: 1rem;
+            margin: 0 0 12px;
+            padding: 8px 12px;
+            border-left: 4px solid var(--primary-light);
+            background: #f5faff;
+            border-radius: 0 8px 8px 0;
+        }
+        .reg-item-wrap { display: flex; flex-direction: column; gap: 3px; }
+        .reg-item-date { color: var(--text-light); font-size: .74rem; font-weight: 400; }
+        .reg-group.hidden { display: none; }
+
         /* ===== 無結果 ===== */
         .no-results {
             text-align: center;
@@ -785,9 +800,27 @@
             if (!list || list.length === 0) {
                 container.innerHTML = '<p style="color:#666">暫無法規資料</p>'; return;
             }
-            container.innerHTML = list.map(item => {
-                const searchText = (item.title + ' ' + (item.description || '')).toLowerCase();
-                return `<a href="${item.url}" target="_blank" rel="noopener" class="reg-item" data-category="法規資訊" data-search="${searchText}">${item.title}</a>`;
+
+            // 依需求分成兩大類：自治條例（含來源清單所列自治規則）及行政規則。
+            // 保留每筆法規在官方清單中的原始類型、日期與正式連結。
+            const groups = [
+                { title: '自治條例（含自治規則）', categories: ['自治條例', '自治規則'] },
+                { title: '行政規則', categories: ['行政規則'] }
+            ];
+
+            container.innerHTML = groups.map(group => {
+                const items = list.filter(item => group.categories.includes(item.category));
+                if (!items.length) return '';
+                const links = items.map(item => {
+                    const searchText = (item.title + ' ' + (item.description || '') + ' ' + item.category + ' ' + (item.date || '')).toLowerCase();
+                    return `<a href="${item.url}" target="_blank" rel="noopener" class="reg-item" data-category="法規資訊" data-search="${searchText}" title="${item.title}（${item.category}）">
+                        <span class="reg-item-wrap"><span>${item.title}</span><span class="reg-item-date">${item.date || ''} · ${item.category}</span></span>
+                    </a>`;
+                }).join('');
+                return `<section class="reg-group" data-reg-group="${group.title}">
+                    <h3 class="reg-group-title">${group.title}（${items.length} 項）</h3>
+                    <div class="reg-list">${links}</div>
+                </section>`;
             }).join('');
         }
 
@@ -852,6 +885,10 @@
                 const text = el.dataset.search;
                 const matchSearch = !term || text.includes(term);
                 el.classList.toggle('hidden', !(matchCat && matchSearch));
+            });
+            document.querySelectorAll('#regList .reg-group').forEach(group => {
+                const visibleItems = group.querySelectorAll('.reg-item:not(.hidden)').length;
+                group.classList.toggle('hidden', visibleItems === 0);
             });
         }
 
