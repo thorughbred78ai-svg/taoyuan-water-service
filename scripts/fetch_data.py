@@ -28,7 +28,7 @@ SERVICE_LINKS = [
     {
         "title": "水利設施參訪預約系統",
         "url": "http://winfo.tycg.gov.tw/R/",
-        "description": "預約參訪桃園北區/龜山/石門/大溪/楊梅水資源回收中心、文青水園、龍山滯洪池、大樹林滯洪池、山豬湖生態親水園區等設施",
+        "description": "預約參訪桃園北區/龜山/石門/大溪/楊梅水資源回收中心、文青園、龍山滯洪池、大樹林滯洪池、山豬湖生態親水園區等設施",
         "category": "線上申請",
         "icon": "🏗️"
     },
@@ -49,7 +49,7 @@ SERVICE_LINKS = [
     {
         "title": "污水系統公告範圍",
         "url": "https://wrb.tycg.gov.tw/cp.aspx?n=10885",
-        "description": "查詢污水下水道系統公告使用地區範圍，了解自家是否位於污水管線佈設區域",
+        "description": "查詢污水下水道系統公告使用地區範圍，了解家是否位於污水管線佈設區域",
         "category": "資訊查詢",
         "icon": "🚰"
     },
@@ -76,22 +76,22 @@ SERVICE_LINKS = [
     },
     {
         "title": "重大點源放流水監測查詢系統",
-        "url": "https://wrb.tycg.gov.tw/",
+        "url": "https://cwms.tydep.gov.tw/PUBLIC/RealTime/Get_AVGR.aspx",
         "description": "查詢重大污染源放流水自動連續監測資訊，確保水質安全",
         "category": "資訊查詢",
         "icon": "📊"
     },
     {
         "title": "龜山水肥站水肥投入預約系統",
-        "url": "https://wrb.tycg.gov.tw/",
+        "url": "https://sewergis.tycg.gov.tw/Account/Login?ReturnUrl=%2FFertilizerStation%2FScheduledFertilizer",
         "description": "水肥站投入預約服務，方便管理水肥處理作業",
         "category": "線上申請",
         "icon": "📅"
     },
     {
         "title": "市管河川及區域排水公開資訊",
-        "url": "https://wrb.tycg.gov.tw/",
-        "description": "市管河川及區域排水相關公開資訊，包含治理劃與現況",
+        "url": "https://wrb.tycg.gov.tw/News.aspx?n=10933&sms=14464",
+        "description": "市管河川及區域排水相關公開資訊，包含治理規劃與現況",
         "category": "資訊查詢",
         "icon": "🏞️"
     },
@@ -104,7 +104,7 @@ SERVICE_LINKS = [
     },
     {
         "title": "電子書",
-        "url": "https://wrb.tycg.gov.tw/",
+        "url": "https://wrb.tycg.gov.tw/News.aspx?n=10936&sms=17523",
         "description": "水務局相關電子書籍與宣導資料線上閱覽",
         "category": "資訊查詢",
         "icon": "📖"
@@ -118,7 +118,7 @@ SERVICE_LINKS = [
     },
     {
         "title": "重大計畫進度查詢",
-        "url": "https://wrb.tycg.gov.tw/",
+        "url": "https://reiso.tycg.gov.tw/",
         "description": "查詢水務局各項重大工程計畫的執行進度",
         "category": "資訊查詢",
         "icon": "📈"
@@ -132,7 +132,7 @@ SERVICE_LINKS = [
     },
     {
         "title": "污水下水道排水設備接管融資專案",
-        "url": "https://wrb.tycg.gov.tw/",
+        "url": "https://wrb.tycg.gov.tw/cp.aspx?n=21918",
         "description": "污水下水道用戶排水設備接管融資相關資訊與申請說明",
         "category": "補助申請",
         "icon": "🏠"
@@ -148,17 +148,17 @@ GOV_INFO_LINKS = [
     },
     {
         "title": "利衝迴避身分揭露專區",
-        "url": "https://wrb.tycg.gov.tw/",
+        "url": "https://wrb.tycg.gov.tw/News.aspx?n=10948&sms=14475",
         "description": "公職人員利益衝突迴避相關身分揭露資訊"
     },
     {
         "title": "公展公告區",
-        "url": "https://wrb.tycg.gov.tw/",
-        "description": "各項計畫公展、公告資訊"
+        "url": "https://wrb.tycg.gov.tw/News.aspx?n=10949&sms=14476",
+        "description": "各項畫公展、公告資訊"
     },
     {
         "title": "公共設施維護管理資訊",
-        "url": "https://wrb.tycg.gov.tw/",
+        "url": "https://wrb.tycg.gov.tw/cl.aspx?n=10950",
         "description": "公共設施維護管理相關資訊公開"
     },
     {
@@ -168,27 +168,27 @@ GOV_INFO_LINKS = [
     },
     {
         "title": "性別主流化專區",
-        "url": "https://wrb.tycg.gov.tw/",
+        "url": "https://wrb.tycg.gov.tw/News.aspx?n=10961&sms=14483",
         "description": "性別主流化相關政策與宣導資訊"
     },
     {
         "title": "個人資料保護專區",
-        "url": "https://wrb.tycg.gov.tw/",
+        "url": "https://wrb.tycg.gov.tw/News.aspx?n=10962&sms=14484",
         "description": "個人資料保護相關規定與宣導"
     },
     {
         "title": "辦理政策及業務宣導之執行情形",
-        "url": "https://wrb.tycg.gov.tw/",
+        "url": "https://wrb.tycg.gov.tw/News.aspx?n=10964&sms=14485",
         "description": "各項政策及業務宣導活動執行情形"
     },
     {
-        "title": "國家賠償事件收結形",
-        "url": "https://wrb.tycg.gov.tw/",
+        "title": "國家賠償事件收結情形",
+        "url": "https://wrb.tycg.gov.tw/News.aspx?n=10965&sms=14486",
         "description": "國家賠償事件處理與收結情形"
     },
     {
         "title": "補助專區",
-        "url": "https://wrb.tycg.gov.tw/",
+        "url": "https://wrb.tycg.gov.tw/News.aspx?n=10966&sms=14487",
         "description": "各項補助資訊與申請說明"
     }
 ]
@@ -199,7 +199,7 @@ TRAFFIC_INFO = {
     "landmark": "【桃園國小旁、郵政總局對面】",
     "bus_stop": "桃園郵局",
     "bus_query": "https://ebus.tycg.gov.tw/",
-    "description": "可至桃園市公車動態資訊網查查詢，點選乘車規劃，依地標、交叉路口、站牌查詢。本局最近站牌為「桃園郵局」。"
+    "description": "可至桃園市公車動態資訊網查詢，點選乘車規劃，依地標、交叉路口、站牌查詢。本局最近站牌為「桃園郵局」。"
 }
 
 # 業務資訊
@@ -232,11 +232,11 @@ BUSINESS_INFO = [
     {
         "title": "河岸地工程管理科",
         "description": "負責河岸地管理、河川區域使用管理、河岸設施維護等業務。",
-        "services": ["河岸地管理", "河川區域使用管理", "河岸設施維護", "容積移轉"]
+        "services": ["河岸地管", "河川區域使用管理", "河岸設施維護", "容積移轉"]
     },
     {
         "title": "污水企劃工程科",
-        "description": "負責污水下水道系統規劃、設、工程發包等業務。",
+        "description": "負責污水下水道系統規劃、設計、工程發包等業務。",
         "services": ["污水系統規劃", "污水工程設計", "工程發包"]
     },
     {
@@ -256,7 +256,7 @@ BUSINESS_INFO = [
     },
     {
         "title": "雨水下水道科",
-        "description": "負責雨水下水道系統劃、建設、管理與維護業務。",
+        "description": "負責雨水下水道系統規劃、建設、管理與維護業務。",
         "services": ["雨水下水道規劃", "建設管理", "設施維護", "清淤作業"]
     },
     {
@@ -278,7 +278,7 @@ FAQ = [
     },
     {
         "question": "山坡地容積移轉如何申請？",
-        "answer": "請至水務局「容積移轉專區」查詢各河川得申請容積移轉土地清冊與相關規定，或洽河岸地工程管理科、坡地管理科辦理。"
+        "answer": "請至水務局「容積移轉專區」查詢各河川得申請容積移轉土地清冊與相關規定，或洽河岸地工程管科、坡地管理科辦理。"
     },
     {
         "question": "污水下水道工程是否有補助？",
@@ -290,7 +290,7 @@ FAQ = [
     },
     {
         "question": "發現排水溝堵塞或積水如何通報？",
-        "answer": "可撥打 1999 市民服務專線通報，或聯繫水務局水利養護工程科處理。也可使用「水情看桃園APP」進行淹水通報"
+        "answer": "可撥打 1999 市民服務專線通報，或聯繫水務局水利養護工程科處理。也可使用「水情看桃園APP」進行淹水通報。"
     },
     {
         "question": "水肥清除許可證如何申請？",
@@ -302,7 +302,7 @@ FAQ = [
     },
     {
         "question": "水務局怎麼去？",
-        "answer": "地址為 33043 桃園市桃園區成功路一段32號7樓（桃園國小旁、郵政總局對面）。可搭乘公車至「桃園郵局」站牌下車。建議先至桃園市公車動態資訊網查詢乘車規劃。"
+        "answer": "地址為 33043 桃園市桃園區成功路一段32號7樓（桃園國小旁、郵政總局對面）。可搭公車至「桃園郵局」站牌下車。建議先至桃園市公車動態資訊網查詢乘車規劃。"
     },
     {
         "question": "如何查詢自家附近有無污水管線？",
@@ -337,7 +337,7 @@ def main():
             "title": "桃園市政府水務局便民資訊服務",
             "description": "整合桃園市政府水務局官方網站各項資訊，提供民眾輕鬆查詢與線上申請",
             "updated_at": datetime.now().isoformat(),
-            "version": "2.1.0",
+            "version": "2.2.0",
             "data_source": "桃園市政府水務局官方網站 (wrb.tycg.gov.tw)"
         },
         "service_links": SERVICE_LINKS,
