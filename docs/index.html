@@ -567,6 +567,7 @@
             <button class="tab-btn" data-category="常見問答">常見問答</button>
             <button class="tab-btn" data-category="訊息公告">訊息公告</button>
             <button class="tab-btn" data-category="政府資訊公開">政府資訊公開</button>
+            <button class="tab-btn" data-category="法規資訊">法規資訊</button>
         </div>
 
         <!-- 便民服務 -->
@@ -784,9 +785,10 @@
             if (!list || list.length === 0) {
                 container.innerHTML = '<p style="color:#666">暫無法規資料</p>'; return;
             }
-            container.innerHTML = list.map(item => `
-                <a href="${item.url}" target="_blank" rel="noopener" class="reg-item">${item.title}</a>
-            `).join('');
+            container.innerHTML = list.map(item => {
+                const searchText = (item.title + ' ' + (item.description || '')).toLowerCase();
+                return `<a href="${item.url}" target="_blank" rel="noopener" class="reg-item" data-category="法規資訊" data-search="${searchText}">${item.title}</a>`;
+            }).join('');
         }
 
         window.toggleFAQ = function(el) {
@@ -840,6 +842,13 @@
 
             document.querySelectorAll('#announcementGrid .gov-item').forEach(el => {
                 const matchCat = category === 'all' || category === '訊息公告';
+                const text = el.dataset.search;
+                const matchSearch = !term || text.includes(term);
+                el.classList.toggle('hidden', !(matchCat && matchSearch));
+            });
+
+            document.querySelectorAll('#regList .reg-item').forEach(el => {
+                const matchCat = category === 'all' || category === '法規資訊';
                 const text = el.dataset.search;
                 const matchSearch = !term || text.includes(term);
                 el.classList.toggle('hidden', !(matchCat && matchSearch));
