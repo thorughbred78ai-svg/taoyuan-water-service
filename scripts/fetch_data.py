@@ -346,13 +346,28 @@ CONTACT_INFO = {
     "website": "https://wrb.tycg.gov.tw/"
 }
 
-# 法規資訊連結
+# 法規資訊連結（園市法規資料庫水務類 + 中央法規）
 REGULATIONS = [
-    {"title": "水利法", "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0110001"},
-    {"title": "河川管理辦法", "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0110005"},
-    {"title": "下水道法", "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=O0040001"},
-    {"title": "水土保持法", "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=M0110001"},
-    {"title": "桃園市河川管理自治條例", "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=O0040011"}
+    # 桃園市法規資料庫水務類（59筆）列表頁
+    {"title": "📋 桃園市水務類法規總覽（第1頁）", "url": "https://law.tycg.gov.tw/LawCategoryContentList.aspx?CategoryID=12&size=40", "category": "法規資訊"},
+    {"title": "📋 桃園市水務類法規總覽（第2頁）", "url": "https://law.tycg.gov.tw/LawCategoryContentList.aspx?CategoryID=12&size=40&page=2", "category": "法規資訊"},
+    # 已知具體法規
+    {"title": "桃園市污水下水道管理自治條例", "url": "https://law.tycg.gov.tw/LawContent.aspx?LawID=B070260000003600", "category": "法規資訊"},
+    {"title": "桃園市雨水下水道管理自治條例", "url": "https://law.tycg.gov.tw/LawContent.aspx?LawID=B070250000008400", "category": "法規資訊"},
+    {"title": "桃園市污水下水道使用費徵收自治條例", "url": "https://law.tycg.gov.tw/LawContent.aspx?LawID=B070250000006700", "category": "法規資訊"},
+    {"title": "桃園市地下水水權裝置量水設備自治條例", "url": "https://law.tycg.gov.tw/LawContent.aspx?LawID=B070260000000700", "category": "法規資訊"},
+    {"title": "桃園市建築基地開發排入雨水下水道逕流量標準", "url": "https://law.tycg.gov.tw/LawContent.aspx?LawID=B070260000000700", "category": "法規資訊"},
+    {"title": "桃園市工業區內事業用戶納入公共污水下水道使用管理及收費辦法", "url": "https://law.tycg.gov.tw/LawContent.aspx?LawID=B070250000002800", "category": "法規資訊"},
+    {"title": "桃園市政府排水計畫書審查作業要點", "url": "https://law.tycg.gov.tw/LawContent.aspx?LawID=B070250001009500", "category": "法規資訊"},
+    {"title": "桃園市政府辦理出流管制設施移交及管理作業要點", "url": "https://law.tycg.gov.tw/LawContent.aspx?LawID=B070260001001500", "category": "法規資訊"},
+    {"title": "桃園市雨水水道相關設施審查及查驗收費標準", "url": "https://law.tycg.gov.tw/LawContent.aspx?LawID=B070250000008400", "category": "法規資訊"},
+    {"title": "桃園市市管區域排水設施範圍使用行為規費收費標準", "url": "https://law.tycg.gov.tw/LawContent.aspx?LawID=B070250000008400", "category": "法規資訊"},
+    # 中央法規
+    {"title": "水利法", "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0110001", "category": "法規資訊"},
+    {"title": "河川管理辦法", "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0110005", "category": "法規資訊"},
+    {"title": "下水道法", "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=O0040001", "category": "法規資訊"},
+    {"title": "水土保持法", "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=M0110001", "category": "法規資訊"},
+    {"title": "排水管理辦法", "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0110010", "category": "法規資訊"}
 ]
 
 def main():
