@@ -228,63 +228,99 @@ TRAFFIC_INFO = {
 
 # 業務資訊
 BUSINESS_INFO = [
-    {
+{
         "title": "綜合企劃科",
+        "phone": "03-303-3688 轉3860",
+        "fax": "03-303-3678",
+        "official_url": "https://wrb.tycg.gov.tw/cp.aspx?n=10837",
         "description": "負責水資源綜合規劃、施政計畫研擬、水利相關政策規劃等業務。",
         "services": ["水資源規劃", "施政計畫", "政策研擬"]
     },
-    {
+{
         "title": "水利防災科",
+        "phone": "03-303-3688 轉3620",
+        "fax": "03-303-3661",
+        "official_url": "https://wrb.tycg.gov.tw/cp.aspx?n=10837",
         "description": "負責水利防災相關業務，包含防汛整備、災害搶修、防洪設施管理等。",
         "services": ["防汛整備", "災害搶修", "防洪設施管理", "水情監測"]
     },
-    {
+{
         "title": "水利行政科",
+        "phone": "03-303-3688 轉3700",
+        "fax": "03-303-3677",
+        "official_url": "https://wrb.tycg.gov.tw/cp.aspx?n=10837",
         "description": "負責水利行政業務，包含河川管理、排水設施管理、水利法規執行等。",
         "services": ["河川管理", "排水設施管理", "水利法規執行", "許可審查"]
     },
-    {
+{
         "title": "水利工程科",
+        "phone": "03-303-3688 轉3310",
+        "fax": "03-303-3664",
+        "official_url": "https://wrb.tycg.gov.tw/cp.aspx?n=10837",
         "description": "負責水利工程規劃設計、發包監造、施工管理等業務。",
         "services": ["工程規劃設計", "工程發包監造", "施工管理", "工程驗收"]
     },
-    {
+{
         "title": "水利養護工程科",
+        "phone": "03-303-3688 轉3800",
+        "fax": "03-303-3665",
+        "official_url": "https://wrb.tycg.gov.tw/cp.aspx?n=10837",
         "description": "負責水利設施養護、河道疏濬、設施維修等業務。",
         "services": ["設施養護", "河道疏濬", "設施維修", "清淤工程"]
     },
-    {
+{
         "title": "河岸地工程管理科",
+        "phone": "03-303-3688 轉3830",
+        "fax": "03-303-3665",
+        "official_url": "https://wrb.tycg.gov.tw/cp.aspx?n=10837",
         "description": "負責河岸地管理、河川區域使用管理、河岸設施維護等業務。",
         "services": ["河岸地管", "河川區域使用管理", "河岸設施維護", "容積移轉"]
     },
-    {
+{
         "title": "污水企劃工程科",
+        "phone": "03-303-3688 轉3510",
+        "fax": "03-303-3666",
+        "official_url": "https://wrb.tycg.gov.tw/cp.aspx?n=10837",
         "description": "負責污水下水道系統規劃、設計、工程發包等業務。",
         "services": ["污水系統規劃", "污水工程設計", "工程發包"]
     },
-    {
+{
         "title": "污水促參計畫工程科",
+        "phone": "03-303-3688 轉3230",
+        "fax": "03-303-3611",
+        "official_url": "https://wrb.tycg.gov.tw/cp.aspx?n=10837",
         "description": "負責污水下水道促參計畫、BOT 工程管理等業務。",
         "services": ["促參計畫", "BOT 工程管理", "民間參與"]
     },
-    {
+{
         "title": "污水設施管理工程科",
+        "phone": "03-303-3688 轉3750",
+        "fax": "03-303-3663",
+        "official_url": "https://wrb.tycg.gov.tw/cp.aspx?n=10837",
         "description": "負責污水處理廠、污水管線、用戶接管等設施管理業務。",
         "services": ["污水處理廠管理", "污水管線管理", "用戶接管", "設施維護"]
     },
-    {
+{
         "title": "坡地管理科",
+        "phone": "03-303-3688 轉3770",
+        "fax": "03-337-4285",
+        "official_url": "https://wrb.tycg.gov.tw/cp.aspx?n=10837",
         "description": "負責山坡地管理、土石流防災、水土保持等業務。",
         "services": ["山坡地管理", "土石流防災", "水土保持", "容積移轉"]
     },
-    {
+{
         "title": "雨水下水道科",
+        "phone": "03-303-3688 轉3730",
+        "fax": "03-303-3662",
+        "official_url": "https://wrb.tycg.gov.tw/cp.aspx?n=10837",
         "description": "負責雨水下水道系統規劃、建設、管理與維護業務。",
         "services": ["雨水下水道規劃", "建設管理", "設施維護", "清淤作業"]
     },
-    {
+{
         "title": "再生水企劃管理工程科",
+        "phone": "03-303-3688 轉3340",
+        "fax": "03-303-3611",
+        "official_url": "https://wrb.tycg.gov.tw/cp.aspx?n=10837",
         "description": "負責再生水利用規劃、推動與管理相關業務。",
         "services": ["再生水規劃", "再生水推動", "水資源再利用"]
     }
@@ -294,44 +330,54 @@ BUSINESS_INFO = [
 FAQ = [
     {
         "question": "如何申請污水下水道用戶接管？",
-        "answer": "可透過「下水道雲端智慧管理系統」線上申請，或至水務局臨櫃辦理。申請時需準備建築物相關證明文件。部分污水用戶接管工程可申請獎勵補助。"
+        "answer": "可透過「下水道雲端智慧管理系統」線上申請，或至水務局臨櫃辦理。申請時需準備建築物相關證明文件。部分污水用戶接管工程可申請獎勵補助。",
+        "links": [{"title": "下水道雲端智慧管理系統", "url": "https://sewergis.tycg.gov.tw/Account/Login"}, {"title": "污水下水道系統公告範圍", "url": "https://wrb.tycg.gov.tw/cp.aspx?n=10885"}]
     },
     {
         "question": "水情資訊如何查詢？",
-        "answer": "可至「水情資訊網」(winfo.tycg.gov.tw/tysafep/) 查詢即時雨量、水位、淹水警戒、土石流警戒等防災資訊。"
+        "answer": "可至水情資訊網查詢即時雨量、水位、淹水警戒、土石流警戒等防災資訊。",
+        "links": [{"title": "水情資訊網", "url": "https://winfo.tycg.gov.tw/tysafep/"}]
     },
     {
         "question": "山坡地容積移轉如何申請？",
-        "answer": "請至水務局「容積移轉專區」查詢各河川得申請容積移轉土地清冊與相關規定，或洽河岸地工程管科、坡地管理科辦理。"
+        "answer": "請至水務局「容積移轉專區」查詢各河川得申請容積移轉土地清冊與相關規定，或洽河岸地工程管理科、坡地管理科辦理。",
+        "links": [{"title": "容積移轉專區", "url": "https://wrb.tycg.gov.tw/News.aspx?n=10926&sms=14463"}, {"title": "機關聯絡資訊", "url": "https://wrb.tycg.gov.tw/cp.aspx?n=10837"}]
     },
     {
         "question": "污水下水道工程是否有補助？",
-        "answer": "部分污水用戶接管工程可申請獎勵補助，詳情請至「下水道雲端智慧管理系統」查詢或洽污水設施管理工程科。另有「污水下水道排水設備接管融資專案」可供參考。"
+        "answer": "部分污水用戶接管工程可申請獎勵補助，詳情請至下水道雲端智慧管理系統查詢或洽污水設施管理工程科。另有「污水下水道排水設備接管融資專案」可供參考。",
+        "links": [{"title": "下水道雲端智慧管理系統", "url": "https://sewergis.tycg.gov.tw/Account/Login"}, {"title": "污水下水道排水設備接管融資專案", "url": "https://wrb.tycg.gov.tw/cp.aspx?n=21918"}]
     },
     {
         "question": "如何預約參訪水利設施？",
-        "answer": "可透過「水利設施參訪預約系統」(winfo.tycg.gov.tw/R/) 線上預約，可選擇桃園北區、龜山、石門、大溪、楊梅水資源回收中心，以及文青水園、龍山滯洪池、大樹林滯洪池、山豬湖生態親水園區等設施。"
+        "answer": "可透過水利設施參訪預約系統線上預約，可選擇桃園北區、龜山、石門、大溪、楊梅水資源回收中心，以及文青水園、龍山滯洪池、大樹林滯洪池、山豬湖生態親水園區等設施。",
+        "links": [{"title": "水利設施參訪預約系統", "url": "http://winfo.tycg.gov.tw/R/"}]
     },
     {
         "question": "發現排水溝堵塞或積水如何通報？",
-        "answer": "可撥打 1999 市民服務專線通報，或聯繫水務局水利養護工程科處理。也可使用「水情看桃園APP」進行淹水通報。"
+        "answer": "可撥打 1999 市民服務專線通報，或聯繫水務局水利養護工程科處理。也可參考水情資訊網掌握相關防災資訊。",
+        "links": [{"title": "水情資訊網", "url": "https://winfo.tycg.gov.tw/tysafep/"}, {"title": "機關聯絡資訊", "url": "https://wrb.tycg.gov.tw/cp.aspx?n=10837"}]
     },
     {
         "question": "水肥清除許可證如何申請？",
-        "answer": "可透過「下水道雲端智慧管理系統」線上申請水肥證，需準備相關車輛及公司資料，包含投肥證申請書、自主檢核表、切結書、廢棄物清除許可證等文件。"
+        "answer": "可透過下水道雲端智慧管理系統線上申請水肥證，需準備相關車輛及公司資料，包含投肥證申請書、自主檢核表、切結書、廢棄物清除許可證等文件。",
+        "links": [{"title": "下水道雲端智慧管理系統", "url": "https://sewergis.tycg.gov.tw/Account/Login"}, {"title": "龜山水肥站水肥投入預約系統", "url": "https://sewergis.tycg.gov.tw/Account/Login?ReturnUrl=%2FFertilizerStation%2FScheduledFertilizer"}]
     },
     {
         "question": "河川區域內可以從事哪些活動？",
-        "answer": "河川區域內活動需依水利法規申請許可，詳情請洽水利行政科或查詢相關法規。未經許可不得於河川區域內從事相關行為。"
+        "answer": "河川區域內活動需依相關水利法規申請許可，詳情請洽水利行政科或查詢水務局相關法規。未經許可不得於河川區域內從事相關行為。",
+        "links": [{"title": "水務類相關法規", "url": "https://law.tycg.gov.tw/"}, {"title": "機關聯絡資訊", "url": "https://wrb.tycg.gov.tw/cp.aspx?n=10837"}]
     },
     {
         "question": "水務局怎麼去？",
-        "answer": "地址為 33043 桃園市桃園區成功路一段32號7樓（桃園國小旁、郵政總局對面）。可搭公車至「桃園郵局」站牌下車。建議先至桃園市公車動態資訊網查詢乘車規劃。"
+        "answer": "地址為 33043 桃園市桃園區成功路一段32號7樓（桃園國小旁、郵政總局對面）。可搭公車至「桃園郵局」站牌下車，建議先查詢乘車規劃。",
+        "links": [{"title": "桃園市公車動態資訊網", "url": "https://ebus.tycg.gov.tw/"}, {"title": "機關聯絡資訊", "url": "https://wrb.tycg.gov.tw/cp.aspx?n=10837"}]
     },
     {
         "question": "如何查詢自家附近有無污水管線？",
-        "answer": "可至「污水系統公告範圍」頁面查詢，了解自家是否位於污水下水道系統公告使用地區範圍內。"
-    }
+        "answer": "可至「污水系統公告範圍」頁面查詢，了解自家是否位於污水下水道系統公告使用地區範圍內。",
+        "links": [{"title": "污水系統公告範圍", "url": "https://wrb.tycg.gov.tw/cp.aspx?n=10885"}]
+    },
 ]
 
 # 聯絡資訊
