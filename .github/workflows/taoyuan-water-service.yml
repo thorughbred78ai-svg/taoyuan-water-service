@@ -3,7 +3,6 @@ name: 桃園市政府水務局便民資訊服務
 on:
   schedule:
     # 每天上午 10:00 (台灣時間 UTC+8) 自動執行
-    # GitHub Actions 使用 UTC 時間，UTC+8 的上午10點 = UTC 的上午2點
     - cron: '0 2 * * *'
   push:
     branches: [ main ]
@@ -35,6 +34,7 @@ jobs:
 
     - name: Fetch data from APIs
       run: python scripts/fetch_data.py
+      continue-on-error: true
 
     - name: Setup Pages
       uses: actions/configure-pages@v5
