@@ -565,6 +565,7 @@
             <button class="tab-btn" data-category="線上申請">線上申請</button>
             <button class="tab-btn" data-category="業務資訊">業務資訊</button>
             <button class="tab-btn" data-category="常見問答">常見問答</button>
+            <button class="tab-btn" data-category="訊息公告">訊息公告</button>
             <button class="tab-btn" data-category="政府資訊公開">政府資訊公開</button>
         </div>
 
@@ -589,6 +590,14 @@
                 <div class="contact-grid" id="contactInfo">
                     <p style="color:#666">載入中...</p>
                 </div>
+            </div>
+        </div>
+
+        <!-- 訊息公告 -->
+        <div class="card" id="announcementSection">
+            <h2><span>📢</span> 訊息公告</h2>
+            <div class="gov-grid" id="announcementGrid">
+                <p style="color:#666;text-align:center;padding:20px">載入中...</p>
             </div>
         </div>
 
@@ -656,6 +665,7 @@
             renderTraffic(data.traffic_info);
             renderContact(data.contact);
             renderGovInfo(data.gov_info_links);
+            renderAnnouncements(data.announcements);
             renderBusiness(data.business_info);
             renderFAQ(data.faq);
             renderRegulations(data.regulations);
@@ -725,6 +735,20 @@
             `).join('');
         }
 
+        function renderAnnouncements(list) {
+            const grid = document.getElementById('announcementGrid');
+            if (!list || list.length === 0) {
+                grid.innerHTML = '<p class="no-results">暫無訊息公告</p>'; return;
+            }
+            grid.innerHTML = list.map(item => `
+                <div class="gov-item" data-category="訊息公告" data-search="${(item.title + ' ' + item.description).toLowerCase()}">
+                    <h4>${item.title}</h4>
+                    <p>${item.description}</p>
+                    <a href="${item.url}" target="_blank" rel="noopener">查看詳情 →</a>
+                </div>
+            `).join('');
+        }
+
         function renderBusiness(list) {
             const grid = document.getElementById('businessGrid');
             if (!list || list.length === 0) {
@@ -744,14 +768,15 @@
             if (!list || list.length === 0) {
                 container.innerHTML = '<p class="no-results">暫無問答資料</p>'; return;
             }
-            container.innerHTML = list.map(item => `
-                <div class="faq-item" data-search="${(item.question + ' ' + item.answer).toLowerCase()}" data-category="常見問答">
+            container.innerHTML = list.map(item => {
+                const searchText = (item.question + ' ' + item.answer.replace(/<[^>]*>/g, '')).toLowerCase();
+                return `<div class="faq-item" data-search="${searchText}" data-category="常見問答">
                     <div class="faq-question" onclick="toggleFAQ(this)">
                         <span>Q: ${item.question}</span>
                     </div>
                     <div class="faq-answer">${item.answer}</div>
-                </div>
-            `).join('');
+                </div>`;
+            }).join('');
         }
 
         function renderRegulations(list) {
@@ -808,6 +833,13 @@
 
             document.querySelectorAll('.faq-item').forEach(el => {
                 const matchCat = category === 'all' || category === '常見問答';
+                const text = el.dataset.search;
+                const matchSearch = !term || text.includes(term);
+                el.classList.toggle('hidden', !(matchCat && matchSearch));
+            });
+
+            document.querySelectorAll('#announcementGrid .gov-item').forEach(el => {
+                const matchCat = category === 'all' || category === '訊息公告';
                 const text = el.dataset.search;
                 const matchSearch = !term || text.includes(term);
                 el.classList.toggle('hidden', !(matchCat && matchSearch));
